@@ -9,6 +9,6 @@ import com.meritamerica.assignment6.models.AccountHolder;
 import com.meritamerica.assignment6.models.CDAccount;
 
 public interface AccountHolderRepo extends JpaRepository<AccountHolder, Integer>{
-	//Optional<AccountHolder> findById(Integer iD);
+	AccountHolder findById(int iD);
 
 }

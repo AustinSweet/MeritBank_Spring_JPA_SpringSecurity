@@ -9,6 +9,10 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.meritamerica.assignment7.exceptions.ExceedsAvailableBalanceException;
+import com.meritamerica.assignment7.exceptions.ExceedsFraudSuspicionLimitException;
+import com.meritamerica.assignment7.exceptions.NegativeAmountException;
+
 public class MeritBank {
 
 	private static AccountHolder AccountHolders[] = new AccountHolder[0];

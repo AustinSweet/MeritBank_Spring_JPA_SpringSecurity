@@ -15,40 +15,38 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.meritamerica.assignment7.exceptions.ExceedsCombinedBalanceLimitException;
+import com.meritamerica.assignment7.exceptions.ExceedsFraudSuspicionLimitException;
+import com.meritamerica.assignment7.exceptions.NegativeAmountException;
+
 @Entity
-public class AccountHolder implements Comparable<AccountHolder>
-{
-	//@Id
-	//@GeneratedValue(strategy=GenerationType.AUTO)
-   // @Column(name="ColumnTest")
-	//public int id;
-	
+public class AccountHolder implements Comparable<AccountHolder> {
+
 	@NotNull
 	private static int nextId = 1;
 	@NotNull
 	@Id
 	@Column
 	private int iD;
-	
 	@OneToOne(cascade = CascadeType.ALL)
 	@Transient
 	private AccountHolderContactDetails contactDetails;
-	
+
 	@Size(max = 50, min = 0, message = "Invalid Input")
 	@NotEmpty(message = "Please Enter Name")
 	@Column
 	private String firstName;
-	
+
 	@Size(max = 50, min = 0, message = "Invalid Input")
 	@NotEmpty(message = "Please Enter Name")
 	@Column
 	private String middleName;
-	
+
 	@Size(max = 50, min = 0, message = "Invalid Input")
 	@NotEmpty(message = "Please Enter Name")
 	@Column
 	private String lastName;
-	
+
 	@Size(max = 50, min = 0, message = "Invalid Input")
 	@NotEmpty(message = "Please Enter Name")
 	@Column
@@ -62,7 +60,7 @@ public class AccountHolder implements Comparable<AccountHolder>
 	@Transient
 	@OneToMany
 	CDAccount[] cdAccount = new CDAccount[0];
-	
+
 	public AccountHolder() {
 		this.iD = nextId++;
 		this.firstName = "";
@@ -70,7 +68,7 @@ public class AccountHolder implements Comparable<AccountHolder>
 		this.lastName = "";
 		this.ssn = "";
 	}
-	
+
 	/**
 	 * 
 	 * @param firstName the first name of person
@@ -86,8 +84,6 @@ public class AccountHolder implements Comparable<AccountHolder>
 		this.ssn = ssn;
 	}
 
-	
-	
 	public AccountHolderContactDetails getContactDetails() {
 		return contactDetails;
 	}
@@ -159,7 +155,7 @@ public class AccountHolder implements Comparable<AccountHolder>
 	public void setSSN(String ssn) {
 		this.ssn = ssn;
 	}
-	
+
 	public int getiD() {
 		return iD;
 	}
@@ -212,7 +208,6 @@ public class AccountHolder implements Comparable<AccountHolder>
 		checking[checking.length-1] = checkingAccount;
 		return checkingAccount;
 	}
-
 
 	/**
 	 * 
@@ -415,7 +410,7 @@ public class AccountHolder implements Comparable<AccountHolder>
 	 */
 	public String writeToString() {
 		String Line0 = getFirstName()+","+getMiddleName()+","+getLastName()+","+getSSN() + "\n";
-		
+
 		String Checking = getCheckingAccounts().length+"\n";
 		String CheckData = "";
 		for(int i = 0; i<getCheckingAccounts().length;i++) {
